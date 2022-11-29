@@ -47,7 +47,7 @@ void main() async {
 
 
     notificationService.notify(NotificationParams.forUpdate(
-        AtKey.shared('Received?', namespace:device_name).build()));
+        AtKey.shared('Received?', namespace:app_name).build()));
 
     ConnectivityListener().subscribe().listen((isConnected) {
         if (isConnected) {
