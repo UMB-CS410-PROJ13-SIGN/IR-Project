@@ -65,7 +65,7 @@ packages:
     source: hosted
     version: "1.0.0"
   at_client:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: at_client
       url: "https://pub.dartlang.org"
@@ -91,7 +91,7 @@ packages:
       name: at_commons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.30"
+    version: "3.0.31"
   at_file_saver:
     dependency: transitive
     description:
