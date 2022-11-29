@@ -25,4 +25,7 @@ flutter:
   uses-material-design: true
   assets:
     - .env
+    - assets/green.jpg
+    - assets/red.jpg
+    - assets/white.jpg
 

@@ -1,5 +1,6 @@
 import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:flutter/material.dart';
+import 'package:ir_project_13/front_end.dart';
 
 class SuccessScreen extends StatefulWidget {
   const SuccessScreen({super.key});
@@ -39,6 +40,13 @@ class _SuccessScreenState extends State<SuccessScreen> {
                 final success = await atClient.put(atKey, value);
                 print(atKey);
                 print('Success: $success');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FrontEnd();
+                    },
+                  ),
+                );
               },
             ),
           ],
