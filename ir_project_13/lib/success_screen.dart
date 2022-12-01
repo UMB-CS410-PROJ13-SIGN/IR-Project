@@ -30,14 +30,17 @@ class _SuccessScreenState extends State<SuccessScreen> {
               child: Text('Submit'),
               onPressed: () async {
                 final String key = _keyController.text;
-                final String value = _valueController.text;
+                final String atSignPico ='@87whispering';
                 final AtClientManager atClientManager =
                     AtClientManager.getInstance();
 
                 final AtClient atClient = atClientManager.atClient;
                 final AtKey atKey =
-                    AtKey.public(key, namespace: 'flutter_demo').build();
-                final success = await atClient.put(atKey, value);
+                    AtKey.public(key, namespace: 'IR', sharedBy: atSignPico).build();
+
+                final AtValue atValue= await atClient.get(atKey, getRequestOptions: GetRequestOptions()..bypassCache =true);
+                
+                final success = await atClient.put(atKey, atValue);
                 print(atKey);
                 print('Success: $success');
                 Navigator.of(context).push(
