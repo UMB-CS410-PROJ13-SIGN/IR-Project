@@ -39,7 +39,7 @@ def main():
     del AtClient
     atClient.pkam_authenticate(verbose=True)    
 
-    atClient.put_public('IR', str(received))
+    atClient.put_public('ir', str(received), -1, 'IR')
 
     print('Value has been sent')
 
