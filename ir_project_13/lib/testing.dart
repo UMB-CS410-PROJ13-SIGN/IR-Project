@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:at_client_mobile/at_client_mobile.dart';
 
-class FrontEnd extends StatefulWidget {
-  const FrontEnd({super.key});
+class Testing extends StatefulWidget {
+  const Testing({super.key});
 
   @override
-  State<FrontEnd> createState() => _FrontEndState();
+  State<Testing> createState() => _TestingState();
 }
 
-class _FrontEndState extends State<FrontEnd> {
+class _TestingState extends State<Testing> {
+  //final TextEditingController _keyController = TextEditingController();
   Widget? _animatedWidget;
   bool test = false;
+  String str = "";
 
   @override
   void initState() {
@@ -44,19 +47,38 @@ class _FrontEndState extends State<FrontEnd> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.play_arrow),
-        onPressed: () {
+      floatingActionButton: ElevatedButton(
+        child: Text("submit"),
+        onPressed: () async {
+          final String key = "ir";
+          final String atSignPico = '@87whispering';
+          final AtClientManager atClientManager = AtClientManager.getInstance();
+
+          final AtClient atClient = atClientManager.atClient;
+          final AtKey atKey =
+              AtKey.public(key, namespace: 'IR', sharedBy: atSignPico).build();
+
+          final AtValue atValue = await atClient.get(atKey,
+              getRequestOptions: GetRequestOptions()..bypassCache = true);
+
+          //final success = await atClient.put(atKey, atValue);
+          print(atValue);
+          print('Success: $atValue');
           setState(() {
-            test = !test;
+            str = atValue.value;
+            if (str == "True") {
+              test = true;
+            } else {
+              test = false;
+            }
             _animatedWidget = test
                 ? ClipOval(
                     child: Image.asset('assets/green.jpg'),
-                    key: const ValueKey(2),
+                    key: const ValueKey("True"),
                   )
                 : ClipOval(
                     child: Image.asset('assets/red.jpg'),
-                    key: const ValueKey(1),
+                    key: const ValueKey("False"),
                   );
           });
         },

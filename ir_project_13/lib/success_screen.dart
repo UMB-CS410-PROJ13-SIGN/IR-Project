@@ -10,9 +10,6 @@ class SuccessScreen extends StatefulWidget {
 }
 
 class _SuccessScreenState extends State<SuccessScreen> {
-  final TextEditingController _keyController = TextEditingController();
-  final TextEditingController _valueController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,29 +17,26 @@ class _SuccessScreenState extends State<SuccessScreen> {
         child: Column(
           children: [
             Text('Success'),
-            TextField(
-              controller: _keyController,
-            ),
-            TextField(
-              controller: _valueController,
-            ),
             ElevatedButton(
               child: Text('Submit'),
               onPressed: () async {
-                final String key = _keyController.text;
-                final String atSignPico ='@87whispering';
+                final String key = "ir";
+                final String atSignPico = '@87whispering';
                 final AtClientManager atClientManager =
                     AtClientManager.getInstance();
 
                 final AtClient atClient = atClientManager.atClient;
                 final AtKey atKey =
-                    AtKey.public(key, namespace: 'IR', sharedBy: atSignPico).build();
+                    AtKey.public(key, namespace: 'IR', sharedBy: atSignPico)
+                        .build();
 
-                final AtValue atValue= await atClient.get(atKey, getRequestOptions: GetRequestOptions()..bypassCache =true);
-                
+                final AtValue atValue = await atClient.get(atKey,
+                    getRequestOptions: GetRequestOptions()..bypassCache = true);
+
                 final success = await atClient.put(atKey, atValue);
-                print(atKey);
+                print(atValue);
                 print('Success: $success');
+
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {

@@ -2,8 +2,11 @@ import 'package:at_app_flutter/at_app_flutter.dart';
 import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:at_onboarding_flutter/at_onboarding_flutter.dart';
 import 'package:flutter/material.dart';
+//import 'package:ir_project_13/success_screen.dart';
+import 'package:ir_project_13/testing.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:ir_project_13/success_screen.dart';
+//import 'package:ir_project_13/success_screen.dart';
+//import 'package:ir_project_13/testing.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return SuccessScreen();
+                    return Testing();
                   },
                 ),
               );
